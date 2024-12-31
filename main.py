@@ -2,6 +2,7 @@ import numpy as np
 import SpiralData
 import Layer
 import activation
+from LossCategoricalCrossentropy import CategoricalCrossentropy
 
 # Create dataset
 X, y = SpiralData.generate_spiral_data()
@@ -25,8 +26,10 @@ activ2.forward(activ1.output)
 # Make a forward pass of our training. data through this layer
 dense2.forward(activ1.output)
 
-
 #takes the output of second dense layer here
 activ2.forward(dense2.output)
 
+#Loss
+loss = CategoricalCrossentropy()
+print("Loss:", loss.calculate(activ2.output,y))
 print(activ2.output[:5])
